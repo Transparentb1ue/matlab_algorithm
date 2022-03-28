@@ -1,0 +1,12 @@
+clc,clear
+a=load('data.txt'); %data为运价表
+c=a(1:end-1,1:end-1);
+e=a(1:end-1,end);
+d=a(end,1:end-1);
+prob=optimproblem;
+x=optimvar('x',m,n,'LowerBound",0); %m,n分别为产地数和销地数
+prob.Objective=sum(sum(c*x));
+prob.Constraints.con1=sum(x,1)==d;
+prob.Constraints.con2=sum(x,2)<=e;
+[sol,fval,flag,out]=solve(prob),xx=sol.x
+writematrix(xx,'data1.xlsx') %将数据写入表格中，便于以后调用

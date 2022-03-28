@@ -1,0 +1,7 @@
+clc,clear,close all
+x0=load('data1.txt'); %data1为已知的自变量取值
+y0=load('data2.txt'); %data2为已知的因变量取值
+x=m:step:n; %m,n分别为起点和终点
+y1=lagrange(x0,y0,x); %拉格朗日插值
+y2=interp1(x0,y0,x); %分段线性插值
+y3=interp1(x0,y0,x,'spline'); %三次样条插值
